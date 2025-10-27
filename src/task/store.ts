@@ -12,6 +12,7 @@ interface TaskState { tasks: Record<string, Task> }
 interface TaskAction {
   add: (task: string) => void
   toggle: (id: string) => void
+  clear: () => void
 }
 
 type TaskStore = TaskState & TaskAction
@@ -28,6 +29,9 @@ const persisted = persist<TaskStore>(
         const task = state.tasks[id]
         return { tasks: { ...state.tasks, [id]: { ...task, checked: !task.checked } } }
       })
+    },
+    clear() {
+      set({ tasks: {} })
     },
   }),
   {

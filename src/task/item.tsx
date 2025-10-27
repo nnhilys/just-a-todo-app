@@ -11,10 +11,11 @@ export function TaskItem(props: { task: Task }): ReactElement {
   const toggleTask = useTasks(state => state.toggle)
 
   return (
-    <label className="flex items-center gap-8">
+    <div className="flex items-center gap-8 w-full overflow-x-hidden">
       <Checkbox.Root
+        id={task.id}
         className={twJoin(
-          'flex items-center justify-center rounded-4 size-24',
+          'flex rounded-4 min-w-20 min-h-20',
           'data-checked:bg-accent-3 data-unchecked:border data-unchecked:border-gray-9',
           'focus-visible:outline-accent-11',
         )}
@@ -25,7 +26,9 @@ export function TaskItem(props: { task: Task }): ReactElement {
           <Check size={20} />
         </Checkbox.Indicator>
       </Checkbox.Root>
-      {task.task}
-    </label>
+      <label htmlFor={task.id} className="break-word">
+        {task.task}
+      </label>
+    </div>
   )
 }
