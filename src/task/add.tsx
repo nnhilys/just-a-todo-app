@@ -1,10 +1,10 @@
 import { Input } from '@base-ui-components/react/input'
 import { useState } from 'react'
 import { twJoin } from 'tailwind-merge'
+import { useTasks } from './store'
 
-export default function TaskAdd(props: { onAdd: (name: string) => void }) {
-  const { onAdd } = props
-
+export default function TaskAdd() {
+  const addTask = useTasks(state => state.add)
   const [value, setValue] = useState<string>('')
 
   return (
@@ -18,7 +18,7 @@ export default function TaskAdd(props: { onAdd: (name: string) => void }) {
       onValueChange={setValue}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
-          onAdd(value)
+          addTask(value)
           setValue('')
         }
       }}
