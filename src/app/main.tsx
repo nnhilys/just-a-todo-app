@@ -1,6 +1,5 @@
 import type { ReactElement } from 'react'
 import { TaskMain } from '../task/main'
-import ThemeToggle from '../theme/toggle'
 import { useTheme } from '../theme/use'
 
 export function AppMain(): ReactElement {
@@ -8,10 +7,7 @@ export function AppMain(): ReactElement {
 
   return (
     <div className="w-screen h-screen flex flex-col">
-      <div className="flex justify-end p-32">
-        <ThemeToggle />
-      </div>
-      <div className="flex w-full justify-center">
+      <div className="flex w-full justify-center p-32">
         <TaskMain />
       </div>
     </div>
