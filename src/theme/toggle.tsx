@@ -1,5 +1,6 @@
 import { Toggle } from '@base-ui-components/react/toggle'
 import { Moon, Sun } from 'lucide-react'
+import { twJoin } from 'tailwind-merge'
 import { usePref } from './store'
 
 export default function ThemeToggle() {
@@ -8,7 +9,10 @@ export default function ThemeToggle() {
   return (
     <Toggle
       aria-label="theme"
-      className="p-4 select-none rounded-4 text-gray-12 hover:bg-gray-4"
+      className={twJoin(
+        'p-4 select-none rounded-4 text-gray-12 hover:bg-gray-4',
+        'focus-visible:outline-none focus-visible:bg-gray-4',
+      )}
       pressed={theme === 'light'}
       onPressedChange={(pressed) => {
         usePref.setState({ theme: pressed ? 'light' : 'dark' })

@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react'
+import { TaskMain } from '../task/main'
 import ThemeToggle from '../theme/toggle'
 import { useTheme } from '../theme/use'
-import { TodoList } from '../todo/list'
 
 export function AppMain(): ReactElement {
   useTheme()
@@ -12,12 +12,7 @@ export function AppMain(): ReactElement {
         <ThemeToggle />
       </div>
       <div className="flex w-full justify-center">
-        <div>
-          <h1 className="text-3xl text-accent-11 mb-32 font-medium">
-            Just a todo app
-          </h1>
-          <TodoList />
-        </div>
+        <TaskMain />
       </div>
     </div>
   )
