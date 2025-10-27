@@ -20,7 +20,7 @@ const persisted = persist<TaskStore>(
   set => ({
     tasks: {},
     add(task: string) {
-      const id = crypto.randomUUID()
+      const id = new Date().getTime().toString()
       set(state => ({ tasks: { ...state.tasks, [id]: { id, task, checked: false } } }))
     },
     toggle(id: string) {
