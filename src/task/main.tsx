@@ -2,7 +2,6 @@ import type { ReactElement } from 'react'
 import { CheckboxGroup } from '@base-ui-components/react/checkbox-group'
 import { twJoin } from 'tailwind-merge'
 import TaskAdd from './add'
-import { TaskClear } from './clear'
 import { TaskItem } from './item'
 import { useTasks } from './store'
 
@@ -15,18 +14,15 @@ export function TaskMain(): ReactElement {
       'flex flex-col gap-16 overflow-y-auto',
     )}
     >
-      <div className="flex gap-16 items-center">
-        <TaskAdd />
-        <TaskClear />
-      </div>
+      <TaskAdd />
       <div className="h-full overflow-y-auto">
         <CheckboxGroup
           aria-labelledby="task-list"
           className="flex flex-col items-start gap-16"
         >
-          {Object.values(tasks).map((task) => {
-            return <TaskItem key={task.id} task={task} />
-          })}
+          {Object.values(tasks)
+            .sort(task => task.checked ? 1 : -1)
+            .map(task => <TaskItem key={task.id} task={task} />)}
         </CheckboxGroup>
       </div>
     </div>
